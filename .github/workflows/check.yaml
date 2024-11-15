@@ -19,6 +19,12 @@ jobs:
 
     - name: Check starting xcode version
       run: xcodebuild -version
+
+    - name: List versions
+      run: softwareupdate --list
+
+    - name: List apps
+      run: ls -la /Applications/ | grep Xcode
     
     - name: Select Xcode 16.0
       run: sudo xcode-select -s /Applications/Xcode_16.0.app
