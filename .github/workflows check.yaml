@@ -1,0 +1,27 @@
+name: Ios Select Test
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: dev
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check starting xcode version
+      run: xcodebuild -version
+    
+    - name: Select Xcode 16.0
+      run: sudo xcode-select -s /Applications/Xcode_16.0.app
+
+    - name: Confirm Xcode version
+      run: xcodebuild -version
